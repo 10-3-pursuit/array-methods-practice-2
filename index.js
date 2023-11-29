@@ -47,7 +47,9 @@ const videoGames = [
  * @param {string} name - The name of the game to find.
  * @returns {Object | undefined} The game object if found, otherwise undefined.
  */
-function findGameByName() {}
+function findGameByName(name) { // step 1: modify fx to accept name as param
+
+}
 
 /**
  * Retrieves all games available on PlayStation.
