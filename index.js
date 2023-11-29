@@ -48,7 +48,9 @@ const videoGames = [
  * @returns {Object | undefined} The game object if found, otherwise undefined.
  */
 function findGameByName(name) { // step 1: modify fx to accept name as param
-
+// step 2: since array of objects containing data is declared in global scope I can use .find method inside fx block
+  let nameKeyValuePair = videoGames.find();
+  return nameKeyValuePair || undefined; // output will be object (name key/value pair)
 }
 
 /**
