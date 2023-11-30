@@ -156,14 +156,33 @@ function gamesOnPCAndXbox() {
   return filteredGames;
 }
 
-console.log(gamesOnPCAndXbox());
+// console.log(gamesOnPCAndXbox());
 /**
  * Counts the number of games released each year.
  * Use the .reduce() method to count games per year.
  * @returns {Object} An object with years as keys and counts as values.
  */
-function countGamesByYear() {}
+function countGamesByYear() {
+  // Use the reduce method on the videoGames array, starting with an empty object as the initial value ({}).
+  return videoGames.reduce((acc, game) => {
+    // Destructure the releaseYear property from each game object.
+    const { releaseYear } = game;
 
+    // Check if the year exists as a key in the accumulator object.
+    // If it exists, increment the count for that year; if not, initialize it with a count of 1.
+    if (acc[releaseYear]) {
+      // If the year already exists in the accumulator object, increment its count by 1.
+      acc[releaseYear]++;
+    } else {
+      // If the year doesn't exist in the accumulator object, initialize it with a count of 1.
+      acc[releaseYear] = 1;
+    }
+
+    // Return the updated accumulator object for the next iteration.
+    return acc;
+  }, {});
+}
+console.log(countGamesByYear());
 module.exports = {
   findGameByName,
   gamesOnPlayStation,
