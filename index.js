@@ -89,7 +89,7 @@ function totalNumberOfPlayers() {
  * @returns {Object[]} An array of game objects released after 2019.
  */
 function gamesReleasedAfter2019() {
-  return videoGames.filter(); // filter() method creates a new array filled with elements that pass a test provided by a function.
+  return videoGames.filter(game => game.releaseYear > 2019); // filter() method creates a new array filled with elements (objects in this case) that pass a test provided by a function (the test is game objects since iterating through array of objects that contain game.releaseYear > 2019)
 }
 
 /**
