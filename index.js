@@ -88,7 +88,9 @@ function totalNumberOfPlayers() {
  * Use the .filter() array method to filter the games.
  * @returns {Object[]} An array of game objects released after 2019.
  */
-function gamesReleasedAfter2019() {}
+function gamesReleasedAfter2019() {
+  return videoGames.filter(); // filter() method creates a new array filled with elements that pass a test provided by a function.
+}
 
 /**
  * Updates the description of a specified game.
