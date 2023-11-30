@@ -59,8 +59,10 @@ console.log(findGameByName("Space Adventure"));
  * Use the .filter() array method to filter the games.
  * @returns {Object[]} An array of game objects available on PlayStation.
  */
-function gamesOnPlayStation() {}
-
+function gamesOnPlayStation() {
+  return videoGames.filter(game => game); // step 1: set up .filter()
+}
+console.log(gamesOnPlayStation(videoGames));
 /**
  * Gets the names of all games in the dataset.
  * Use the .map() array method to create an array of names.
