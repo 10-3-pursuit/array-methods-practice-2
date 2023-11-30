@@ -98,7 +98,9 @@ function gamesReleasedAfter2019() {
  * @param {string} name - The name of the game to update.
  * @param {string} newDescription - The new description for the game.
  */
-function updateGameDescription() {}
+function updateGameDescription(name) { // step 1: add param to fx
+  return videoGames.find(); // step 2: Use .find() on array of objects to get the value of the first element that pass the test. Otherwise it returns undefined
+}
 
 /**
  * Creates a list of games with the count of consoles they are available on.
