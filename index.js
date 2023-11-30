@@ -50,9 +50,9 @@ const videoGames = [
 function findGameByName(name) { // step 1: modify fx to accept name as param (will be used inside .find() callback fx because must iterate first to get to name value)
 // step 2: since array of objects containing data is declared in global scope I can use .find method inside fx block
 // step 2a: define condition to check each element against so it knows how to search for the videoGame by name
-  return videoGames.find(videoGame => videoGame.name === name); // output should be object (name key/value pair) bc .find() immediately returns the element that satisfies condition and stops searching through the rest of the array. Element is an object bc .find() iterates through array and videoGames data is an array of objects. The || is not needed because if no elements satisfy the testing function, .find() returns undefined already
+  return videoGames.find(videoGame => videoGame.name === name); // output should be object that contains name key/value pair that matches input bc .find() immediately returns the element that satisfies condition and stops searching through the rest of the array. Element is an object bc .find() iterates through array that has objects with .name key value pair and videoGames data is an array of objects. The || is not needed because if no elements satisfy the testing function, .find() returns undefined already
 }
-console.log(findGameByName("Space Adventure"));
+//console.log(findGameByName("Space Adventure"));
 
 /**
  * Retrieves all games available on PlayStation.
@@ -60,15 +60,19 @@ console.log(findGameByName("Space Adventure"));
  * @returns {Object[]} An array of game objects available on PlayStation.
  */
 function gamesOnPlayStation() {
-  return videoGames.filter(game => game); // step 1: set up .filter()
+  return videoGames.filter(game => game.consoles.includes("PlayStation")); // step 1: set up .filter() which iterates through array and puts elements in new array. Used when you want to select a subset of elements from an array based on some criteria.
+  // step 2: the critera (boolean) set by using includes() method which returns true if an array contains a specified value; returns false if the value is not found; is case sensitive.
 }
-console.log(gamesOnPlayStation(videoGames));
+//console.log(gamesOnPlayStation(videoGames));
 /**
  * Gets the names of all games in the dataset.
  * Use the .map() array method to create an array of names.
  * @returns {string[]} An array of names of all games.
  */
-function getAllGameNames() {}
+function getAllGameNames() {
+  return videoGames.map(game => game.name); // step 1: create .map syntax - creates a new array from calling a function for every array element. Fx will iterate through array and turn element which is an object containing name key into string of value key contained and put it into an array.
+}
+console.log(getAllGameNames(videoGames));
 
 /**
  * Calculates the total number of players across all games.
