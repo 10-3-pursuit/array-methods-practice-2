@@ -51,8 +51,7 @@ function findGameByName(name) { // step 1: modify fx to accept name as param (wi
 // step 2: since array of objects containing data is declared in global scope I can use .find method inside fx block
   let nameKeyValuePair = videoGames.find(videoGame => videoGame.name === name); // define condition to check each element against so it knows how to search for the videoGame by name
   // Step 3: use console.log to find out if element is an object with key value pair or the value of the name key which is a string.
-  console.log (nameKeyValuePair);
-  return nameKeyValuePair || undefined; // output should be object (name key/value pair) - i don't think it will be yet because if an element in the array satisfies the testing function, .find() immediately returns that element and stops searching through the rest of the array. Not sure if element is an object with key value pair or the value of the name key which is a string. The || is not needed because if no elements satisfy the testing function, .find() returns undefined already
+  return nameKeyValuePair // output should be object (name key/value pair) bc .find() immediately returns the element that satisfies condition and stops searching through the rest of the array. Element is an object bc .find() iterates through array and videoGames data is an array of objects. The || is not needed because if no elements satisfy the testing function, .find() returns undefined already
 }
 findGameByName("Space Adventure");
 
