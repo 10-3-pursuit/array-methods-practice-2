@@ -79,7 +79,9 @@ console.log(getAllGameNames(videoGames));
  * Use the .reduce() array method to sum up the players.
  * @returns {number} The total number of players.
  */
-function totalNumberOfPlayers() {}
+function totalNumberOfPlayers() {
+  return videoGames.reduce((sumPlayers, game) => sumPlayers + game.numPlayers, 0); // callback function takes two parameters: sumPlayers (the accumulator) and game (the current element). 0 indicates the index it starts at. Returns The accumulated result from the last call of the callback function which will be total number of players
+}
 
 /**
  * Retrieves all games released after the year 2019.
