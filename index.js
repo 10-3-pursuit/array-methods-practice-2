@@ -144,12 +144,17 @@ function gamesWithConsoleCount() {
  * @returns {Object} The game object with the maximum number of players.
  */
 function gameWithMaxPlayers() {
-  return videoGames.reduce(maxGame, currentGame => { // step 1: use .reduce (method is typically used for accumulating a single result from an array) 
+  return videoGames.reduce((maxGame, currentGame) => { // step 1: use .reduce (method is typically used for accumulating a single result from an array) 
     // step 2: it takes 2 parameters. I'll call them maxGame which will keep track of the game with the most players found so far and currentGame which will be current game object being processed in array
-
-  }); // uses .reduce to calculate total number of players which isn't what fx is supposed to do
-  // step 1: 
+    // step 3: set up logic that compares numPlayers and return game with more players. The accumulator is what's going to be returned after iteration is complete, so the logic should be whether the accumulator should be maxGame variable or currentGame variable. If maxGame.numPlayers is greater than currentGame.numPlayers, it means maxGame has more players, and therefore, maxGame should continue to be the accumulator. Conversely, if currentGame.numPlayers is greater than or equal to maxGame.numPlayers, then currentGame becomes the new accumulator because it has more (or the same number of) players.
+    if (maxGame.numPlayers > currentGame.numPlayers) {
+      return maxGame;
+    } else {
+      return currentGame;
+    }
+  });
 }
+console.log(gameWithMaxPlayers());
 
 /**
  * Retrieves games available on both PC and Xbox.
