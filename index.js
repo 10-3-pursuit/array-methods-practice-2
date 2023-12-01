@@ -72,7 +72,7 @@ function gamesOnPlayStation() {
 function getAllGameNames() {
   return videoGames.map(game => game.name); // step 1: create .map syntax - creates a new array from calling a function for every array element. Fx will iterate through array and turn element which is an object containing name key into string of value key contained and put it into an array.
 }
-console.log(getAllGameNames(videoGames));
+// console.log(getAllGameNames(videoGames));
 
 /**
  * Calculates the total number of players across all games.
@@ -127,8 +127,16 @@ function updateGameDescription(name, newDescription) { // step 1: add param to f
  * @returns {Object[]} An array of objects with game name and console count.
  */
 function gamesWithConsoleCount() {
-  videoGames.map(game => game.consoles); // step 1: set up .map method to do an operation regarding game.consoles
+  return videoGames.map(game => { // step 3a: make callback explicit
+    return {
+      name: game.name,
+      consoleCount: game.consoles.length
+    }
+  }); // step 1: set up .map method to do an operation regarding game.consoles
+  // step 2: add .length property to game.consoles to get number of consoles in array
+  // step 3: fx is supposed to return an array of objects with game name and console count so literally type out the object structure .map should return
 }
+console.log (gamesWithConsoleCount());
 
 /**
  * Finds the game with the maximum number of players.
