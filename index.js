@@ -166,26 +166,41 @@ function gamesOnPCAndXbox() {
     game.consoles.includes("PC") && game.consoles.includes("Xbox")); // console key is an array of strings .includes() returns true if the value is found, otherwise false.
 }
 
+/*
+------ NOTES for fx countGamesByYear() ------
+Returning the accumulator (`acc`) outside the `if` statements but inside the callback function of the `.reduce()` method is a key aspect of how `.reduce()` works in JavaScript. Here's why this is done:
+
+1. **Role of the Callback Function**: The callback function in `.reduce()` is executed for each element in the array. Its job is to process the current element (`currentValue`) and modify the accumulator (`acc`) accordingly. 
+
+2. **Accumulator as a Running Total**: The accumulator (`acc`) acts as a "running total" or "running state" that is updated with each iteration. It's essential to return the accumulator at the end of each call to the callback function so that its updated state is passed on to the next iteration.
+
+3. **Scope of the Accumulator Updates**: The updates to the accumulator, based on the logic in the `if` statements, are part of the processing of each array element. These updates change the state of the accumulator, but they don't complete the overall reduction process.
+
+4. **Continuity Across Iterations**: By returning the accumulator after the `if` blocks, you ensure that the updated state of the accumulator is carried forward to the next iteration. If you don't return the accumulator, the next iteration would not have access to the changes made in the current iteration, breaking the continuity of the reduction process.
+
+5. **Final Return Value**: At the end of the `.reduce()` process, after all elements have been processed, the final state of the accumulator is returned as the result of the `.reduce()` method. This final return is outside and after the callback function.
+
+In summary, returning the `acc` at the end of the callback function (but outside the `if` statements) is crucial for maintaining the continuity and integrity of the reduction process. It ensures that each step's changes are carried forward, ultimately leading to a final, reduced result after processing all array elements.
+*/
+
 /**
  * Counts the number of games released each year. (For each year it looks like there has only been 1 game released)
  * Use the .reduce() method to count games per year.
  * @returns {Object} An object with years as keys and counts as values.
  */
-function countGamesByYear() {
-  
-  return videoGames.reduce((acc,game) => { // step 1: write out reduce syntax. acc: This is the accumulator object in the .reduce() method. It's the object that you are building up over each iteration of .reduce(). Initially, it's an empty object {} (because used as second argument in reduce syntax)
+function countGamesByYear() { 
+  return videoGames.reduce((acc, game) => { // step 1: write out reduce syntax. acc: This is the accumulator object in the .reduce() method. It's the object that you are building up over each iteration of .reduce(). Initially, it's an empty object {} (because used as second argument in reduce syntax)
     // step 2: trying to increment an undefined value (which will be the case for a year key that doesn't yet exist in the object) will result in an error. So before incrementing the count for a specific year, ensure that releaseYear key exists in the game object
     if (!game.releaseYear) { // game.releaseYear: This is the property of the current game object in the iteration. It's supposed to be a year (like 2020, 2021, etc.). If falsy (that's why ! is needed) should return acc which should be empty object because it means no games were released that year
       return acc;
     }
     // step 3: After checking for game.releaseYear, you need to increment the count for that year in the acc object. If the year does not exist in acc, initialize it. If it does exist, increment it.
-    if (acc[game.releaseYear]) { // acc[game.releaseYear]: This expression accesses the value associated with the key game.releaseYear in the acc object. For example, if game.releaseYear is 2020, it's equivalent to acc[2020].
+    if (acc[game.releaseYear]) { // acc[game.releaseYear]: This expression accesses the value associated with the key game.releaseYear in the acc object. For example, if game.releaseYear is 2020, it's equivalent to acc[2020]. If true then execute line 199
     acc[game.releaseYear]++; // increment the count for that year in the acc object if it exists. This syntax uses game.releaseYear as the key and value assigned would be the count of games released for that year when iterating through array of objects
     } else {
      acc[game.releaseYear] = 1; // If the year does not exist in acc, initialize it. this syntax uses game.releaseYear as the key and value assigned would be 1 (the count)
-    
-  } return acc;
-} ,{}); // to initiate we use 0 but in this case I used {}. Return the acc outside the if statements but inside call back
+    } return acc;
+  } ,{}); // to initiate we use 0 but in this case I used {}. Return the acc outside the if statements but inside call back
 }
 //console.log (countGamesByYear());
 
