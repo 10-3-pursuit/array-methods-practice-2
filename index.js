@@ -167,11 +167,27 @@ function gamesOnPCAndXbox() {
 }
 
 /**
- * Counts the number of games released each year.
+ * Counts the number of games released each year. (For each year it looks like there has only been 1 game released)
  * Use the .reduce() method to count games per year.
  * @returns {Object} An object with years as keys and counts as values.
  */
-function countGamesByYear() {}
+function countGamesByYear() {
+  
+  return videoGames.reduce((acc,game) => { // step 1: write out reduce syntax. acc: This is the accumulator object in the .reduce() method. It's the object that you are building up over each iteration of .reduce(). Initially, it's an empty object {} (because used as second argument in reduce syntax)
+    // step 2: trying to increment an undefined value (which will be the case for a year key that doesn't yet exist in the object) will result in an error. So before incrementing the count for a specific year, ensure that releaseYear key exists in the game object
+    if (!game.releaseYear) { // game.releaseYear: This is the property of the current game object in the iteration. It's supposed to be a year (like 2020, 2021, etc.). If falsy (that's why ! is needed) should return acc which should be empty object because it means no games were released that year
+      return acc;
+    }
+    // step 3: After checking for game.releaseYear, you need to increment the count for that year in the acc object. If the year does not exist in acc, initialize it. If it does exist, increment it.
+    if (acc[game.releaseYear]) { // acc[game.releaseYear]: This expression accesses the value associated with the key game.releaseYear in the acc object. For example, if game.releaseYear is 2020, it's equivalent to acc[2020].
+    acc[game.releaseYear]++; // increment the count for that year in the acc object if it exists. This syntax uses game.releaseYear as the key and value assigned would be the count of games released for that year when iterating through array of objects
+    } else {
+     acc[game.releaseYear] = 1; // If the year does not exist in acc, initialize it. this syntax uses game.releaseYear as the key and value assigned would be 1 (the count)
+    
+  } return acc;
+} ,{}); // to initiate we use 0 but in this case I used {}. Return the acc outside the if statements but inside call back
+}
+//console.log (countGamesByYear());
 
 module.exports = {
   findGameByName,
