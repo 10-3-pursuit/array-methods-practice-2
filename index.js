@@ -92,15 +92,34 @@ function gamesReleasedAfter2019() {
   return videoGames.filter(game => game.releaseYear > 2019); // filter() method creates a new array filled with elements (objects in this case) that pass a test provided by a function (the test is game objects since iterating through array of objects that contain game.releaseYear > 2019)
 }
 
+// ------ NOTES about fx updateGameDescription ------
+/*The function `updateGameDescription` works without a return statement because it performs an operation that directly modifies an object within an array, and this modification has a side effect on the original array.
+
+Here's how it works:
+
+1. **Reference Type in JavaScript**: In JavaScript, objects (including arrays) are reference types. This means when you manipulate an object, you're working with a reference to that object, not a copy of it. 
+
+2. **Finding the Object**: The `find` method is used to search through the `videoGames` array to find the game object whose `name` property matches the `name` parameter passed to the function. If such an object is found, `find` returns a reference to that object, not a copy.
+
+3. **Modifying the Object**: When you modify the `description` property of the `game` object (found by `find`), you're modifying the object that exists in the `videoGames` array. This is because `game` is a reference to the object within the array, not a separate, disconnected copy.
+
+4. **No Need for Return**: Since the function's purpose is to modify an object within an external array, there is no need to return anything. The modification is carried out on the original array due to the reference nature of JavaScript objects. The array `videoGames` will reflect this change after the function is called.
+
+In summary, the function works without a return statement because its job is to produce a side effect (modifying an object within an array) rather than to compute a value and return it. The changes made by the function are seen in the `videoGames` array itself, which is outside the function's scope but is affected due to the reference nature of JavaScript objects.
+*/
 /**
  * Updates the description of a specified game.
  * Use the .find() array method to locate the game.
  * @param {string} name - The name of the game to update.
  * @param {string} newDescription - The new description for the game.
  */
-function updateGameDescription(name) { // step 1: add param to fx
-  return videoGames.find(); // step 2: Use .find() on array of objects to get the value of the first element that pass the test. Otherwise it returns undefined
+function updateGameDescription(name, newDescription) { // step 1: add param to fx
+  const game = videoGames.find(game => game.name === name); // step 2: Use .find() on array of objects to get the value of the first element that pass the test (game.name === name) Otherwise it returns undefined
+  if (game) { // if not undefined i.e. game is truthy then
+  game.description = newDescription; // update the description
+  }
 }
+
 
 /**
  * Creates a list of games with the count of consoles they are available on.
