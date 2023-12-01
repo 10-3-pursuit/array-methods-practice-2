@@ -126,7 +126,9 @@ function updateGameDescription(name, newDescription) { // step 1: add param to f
  * Use the .map() array method to create the new array.
  * @returns {Object[]} An array of objects with game name and console count.
  */
-function gamesWithConsoleCount() {}
+function gamesWithConsoleCount() {
+  videoGames.map(game => game.consoles); // step 1: set up .map method to do an operation regarding game.consoles
+}
 
 /**
  * Finds the game with the maximum number of players.
