@@ -136,14 +136,20 @@ function gamesWithConsoleCount() {
   // step 2: add .length property to game.consoles to get number of consoles in array
   // step 3: fx is supposed to return an array of objects with game name and console count so literally type out the object structure .map should return
 }
-console.log (gamesWithConsoleCount());
+// console.log (gamesWithConsoleCount());
 
 /**
  * Finds the game with the maximum number of players.
  * Use the .reduce() method to determine the game with the most players.
  * @returns {Object} The game object with the maximum number of players.
  */
-function gameWithMaxPlayers() {}
+function gameWithMaxPlayers() {
+  return videoGames.reduce(maxGame, currentGame => { // step 1: use .reduce (method is typically used for accumulating a single result from an array) 
+    // step 2: it takes 2 parameters. I'll call them maxGame which will keep track of the game with the most players found so far and currentGame which will be current game object being processed in array
+
+  }); // uses .reduce to calculate total number of players which isn't what fx is supposed to do
+  // step 1: 
+}
 
 /**
  * Retrieves games available on both PC and Xbox.
