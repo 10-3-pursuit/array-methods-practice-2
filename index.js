@@ -146,15 +146,10 @@ function gamesWithConsoleCount() {
 function gameWithMaxPlayers() {
   return videoGames.reduce((maxGame, currentGame) => { // step 1: use .reduce (method is typically used for accumulating a single result from an array) 
     // step 2: it takes 2 parameters. I'll call them maxGame which will keep track of the game with the most players found so far and currentGame which will be current game object being processed in array
+    
     // step 3: set up logic that compares numPlayers and return game with more players. The accumulator is what's going to be returned after iteration is complete, so the logic should be whether the accumulator should be maxGame variable or currentGame variable. If maxGame.numPlayers is greater than currentGame.numPlayers, it means maxGame has more players, and therefore, maxGame should continue to be the accumulator. Conversely, if currentGame.numPlayers is greater than or equal to maxGame.numPlayers, then currentGame becomes the new accumulator because it has more (or the same number of) players.
-
-    // if (maxGame.numPlayers > currentGame.numPlayers) {
-    //   return maxGame;
-    // } else {
-    //   return currentGame;
-    // }
   
-    //step 4: refactor if possible - in this case I can use React ES6 ternary operator to simplify. Syntax: condition ? <expression if true> : <expression if false></expression>
+    //step 4: refactor if possible - in this case I can use React ES6 ternary operator to simplify if statement. Syntax: condition ? <expression if true> : <expression if false></expression>
   return maxGame.numPlayers > currentGame.numPlayers ? maxGame : currentGame;
   });
 }
@@ -165,7 +160,11 @@ function gameWithMaxPlayers() {
  * Use the .filter() array method to filter the games.
  * @returns {Object[]} An array of game objects available on both PC and Xbox.
  */
-function gamesOnPCAndXbox() {}
+function gamesOnPCAndXbox() {
+  return videoGames.filter(game => // step 1: .filter() is used on the videoGames array to iterate over each game.
+  // step 2: For each game, the condition game.consoles.includes("PC") && game.consoles.includes("Xbox") checks whether both "PC" and "Xbox" are in the consoles array.
+    game.consoles.includes("PC") && game.consoles.includes("Xbox")); // console key is an array of strings .includes() returns true if the value is found, otherwise false.
+}
 
 /**
  * Counts the number of games released each year.
